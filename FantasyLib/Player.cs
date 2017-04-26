@@ -11,5 +11,6 @@ namespace FantasyLib
         public string Surname { get; set; }
         public double Price { get; set; }
         public Statistics Stat { get; set; }
+        public string TeamName { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace FantasyLib
         public Defender[] Defense { get; set; }
         public MidFielder[] MidField { get; set; }
         public Forward[] Attack { get; set; }
+        public Player[] Substitutions { get; set; }
         public Player Capitain { get; set; }
         public int GetScore()
         {
