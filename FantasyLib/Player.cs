@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FantasyLib
 {
+    [Serializable]
     public abstract class Player
     {
         public string Surname { get; set; }

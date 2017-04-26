@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fantasy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="600" Width="600" MinWidth="600" MinHeight="600">
     <Grid>
         
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid>
@@ -31,8 +32,14 @@
                 <TextBox Name="CapitainTextBox" HorizontalAlignment="Right" FontSize="20" VerticalAlignment="Center" Width="125" Margin="5" ToolTip="Введите фамилию капитана"></TextBox>
             </StackPanel>
         </Grid>
-        
-        <Grid Name="ButtonGrid" Grid.Row="1">
+        <StackPanel Name="SubPanel" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="3">
+            <Label Name="Sub" FontSize="20" VerticalAlignment="Center" Width="100" Margin="5" ToolTip="Скамейка запасных">Запасные: </Label>
+            <TextBox Name="Sub1" FontSize="20" VerticalAlignment="Center" Width="100" Margin="5" ToolTip="Введите фамилию запасного"></TextBox>
+            <TextBox Name="Sub2" FontSize="20" VerticalAlignment="Center" Width="100" Margin="5" ToolTip="Введите фамилию запасного"></TextBox>
+            <TextBox Name="Sub3" FontSize="20" VerticalAlignment="Center" Width="100" Margin="5" ToolTip="Введите фамилию запасного"></TextBox>
+            <TextBox Name="Sub4" FontSize="20" VerticalAlignment="Center" Width="100" Margin="5" ToolTip="Введите фамилию запасного"></TextBox>
+        </StackPanel>
+        <Grid Name="ButtonGrid" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>

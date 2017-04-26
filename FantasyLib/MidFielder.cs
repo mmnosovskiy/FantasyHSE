@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FantasyLib
 {
+    [Serializable]
     public class MidFielder : Player
     {
         public int Score

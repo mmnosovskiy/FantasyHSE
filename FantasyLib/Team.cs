@@ -15,6 +15,10 @@ namespace FantasyLib
         public Forward[] Attack { get; set; }
         public Player[] Substitutions { get; set; }
         public Player Capitain { get; set; }
+        /// <summary>
+        /// Метод для вычисления очков команды
+        /// </summary>
+        /// <returns></returns>
         public int GetScore()
         {
             int score = 0;
@@ -37,6 +41,9 @@ namespace FantasyLib
             }
             return score;
         }
+        /// <summary>
+        /// Метод для вычисления стоимости команды
+        /// </summary>
         public double Price
         {
             get
@@ -58,7 +65,10 @@ namespace FantasyLib
                 return price;
             }
         }
-
+        /// <summary>
+        /// Метод, создающий массив основных игроков
+        /// </summary>
+        /// <returns>Массив игроков основы</returns>
         public Player[] GetTeamArr()
         {
             Player[] res = new Player[9];
@@ -66,8 +76,15 @@ namespace FantasyLib
             Array.Copy(Defense, 0, res, 1, Defense.Length);
             Array.Copy(MidField, 0, res, Defense.Length + 1, MidField.Length);
             Array.Copy(Attack, 0, res, MidField.Length + Defense.Length + 1, Attack.Length);
+            //Array.Copy(Substitutions, 0, res, MidField.Length + Defense.Length + Attack.Length + 1, Substitutions.Length);
             return res;
         }
+        /// <summary>
+        /// Создает 
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
         public static Team CreateTeamFromFile(string fileName, List<Player> list)
         {
             string temp;
@@ -116,13 +133,25 @@ namespace FantasyLib
                 arr = temp.Split(separators, StringSplitOptions.RemoveEmptyEntries);
                 Player capitain = list.Find(pl => pl.Surname == arr[1]);
 
+                temp = sr.ReadLine();
+                arr = temp.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                arrTemp = new string[arr.Length - 1];
+                Array.Copy(arr, 1, arrTemp, 0, arrTemp.Length);
+                arr = arrTemp;
+                Player[] sub = new Player[arr.Length];
+                for (int i = 0; i < sub.Length; i++)
+                {
+                    sub[i] = list.Find(pl => pl.Surname == arr[i]);
+                }
+
                 Team team = new Team()
                 {
                     Keeper = keeper,
                     Defense = def,
                     MidField = mid,
                     Attack = fwd,
-                    Capitain = capitain
+                    Capitain = capitain,
+                    Substitutions = sub
                 };
                 return team;
             }
