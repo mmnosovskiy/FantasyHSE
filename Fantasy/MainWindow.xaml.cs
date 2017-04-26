@@ -83,6 +83,8 @@ namespace Fantasy
         public MainWindow()
         {
             InitializeComponent();
+            ExcelParser ex = new ExcelParser();
+            ex.InitializeList();
             list = new List<Player>
             {
                 new Goalkeeper() { Surname = "g", Stat = new Statistics() { Goals = 1 } },
