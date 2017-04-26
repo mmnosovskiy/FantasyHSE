@@ -1,0 +1,57 @@
+﻿<Window x:Class="Fantasy.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Fantasy"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600">
+    <Grid>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.Background>
+                <ImageBrush ImageSource="Images\field.jpg"></ImageBrush>
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Name="AttackPanel" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+            <StackPanel Name="MidFieldPanel" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+            <StackPanel Name="DefensePanel" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center"></StackPanel>
+            <TextBox Grid.Row="3" Name="KeeperTextBox" HorizontalAlignment="Center" FontSize="20" VerticalAlignment="Center" Width="125" Margin="5" ToolTip="Введите фамилию вратаря"></TextBox>
+            <StackPanel Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+                <Label FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Foreground="White" FontStyle="Italic">Капитан: </Label>
+                <TextBox Name="CapitainTextBox" HorizontalAlignment="Right" FontSize="20" VerticalAlignment="Center" Width="125" Margin="5" ToolTip="Введите фамилию капитана"></TextBox>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Name="ButtonGrid" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Схема: " FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
+                <ComboBox Name="SchemeComboBox" SelectedIndex="2" Width="150" Height="50" Margin="5" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="SchemeComboBox_SelectionChanged">
+                    <ComboBoxItem Name="s4_3_1">4-3-1</ComboBoxItem>
+                    <ComboBoxItem Name="s4_2_2">4-2-2</ComboBoxItem>
+                    <ComboBoxItem Name="s3_3_2">3-3-2</ComboBoxItem>
+                    <ComboBoxItem Name="s3_2_3">3-2-3</ComboBoxItem>
+                    <ComboBoxItem Name="s3_4_1">3-4-1</ComboBoxItem>
+                    <ComboBoxItem Name="s2_3_3">2-3-3</ComboBoxItem>
+                    <ComboBoxItem Name="s2_4_2">2-4-2</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+            <Button Name="SubmitButton" Grid.Column="1" HorizontalAlignment="Right" Width="100" Height="50" Margin="5" Click="SubmitButton_Click">Submit</Button>
+            <Button Name="AddFromFileButton" Grid.Column="2" Width="100" Height="50" Margin="5" Click="AddFromFileButton_Click">Add from file</Button>
+        </Grid>
+    </Grid>
+</Window>
