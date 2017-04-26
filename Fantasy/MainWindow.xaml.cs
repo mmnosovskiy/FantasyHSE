@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FantasyLib;
 using Microsoft.Win32;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Fantasy
 {
@@ -23,9 +24,25 @@ namespace Fantasy
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Проверка состава на пустые строки
+        /// </summary>
         static bool NotReady;
+        /// <summary>
+        /// Проверка на наличие капитана в команде
+        /// </summary>
         static bool CapExists;
+        /// <summary>
+        /// Проверка на существование игроков в списке
+        /// </summary>
+        static bool NotPlayersExist;
+        /// <summary>
+        /// Список игроков
+        /// </summary>
         static List<Player> list;
+        /// <summary>
+        /// Метод для проверки условий перед рассчетом очков
+        /// </summary>
         public void Flag()
         {
             string[] players = new string[9];
@@ -47,8 +64,20 @@ namespace Fantasy
                 if (item.Text == string.Empty) NotReady = true;
                 players[i++] = item.Text;
             }
+            //foreach (string item in players)
+            //{
+            //    if (players.Count(t => item == t) > 1) NotReady = true;
+            //}
             CapExists = players.Contains(CapitainTextBox.Text);
+            foreach (string item in players)
+            {
+                if (list.Find(pl => pl.Surname == item) == null) NotPlayersExist = true;
+            }
         }
+        /// <summary>
+        /// Метод для создания объекта команды по текстовым полям
+        /// </summary>
+        /// <returns>team</returns>
         public Team CreateTeam()
         {
             Team team = new Team();
@@ -56,6 +85,8 @@ namespace Fantasy
             Defender[] def = new Defender[DefensePanel.Children.Count];
             MidFielder[] mid = new MidFielder[MidFieldPanel.Children.Count];
             Forward[] attack = new Forward[AttackPanel.Children.Count];
+            Player[] sub = new Player[4];
+            
             int i = 0;
             foreach (TextBox item in DefensePanel.Children)
             {
@@ -71,11 +102,17 @@ namespace Fantasy
             {
                 attack[i++] = (Forward)list.Find(pl => pl.Surname == item.Text);
             }
+            
+            sub[0] = list.Find(pl => pl.Surname == Sub1.Text);
+            sub[1] = list.Find(pl => pl.Surname == Sub2.Text);
+            sub[2] = list.Find(pl => pl.Surname == Sub3.Text);
+            sub[3] = list.Find(pl => pl.Surname == Sub4.Text);
 
             team.Keeper = keeper;
             team.Defense = def;
             team.MidField = mid;
             team.Attack = attack;
+            team.Substitutions = sub;
             team.Capitain = list.Find(pl => pl.Surname == CapitainTextBox.Text);
             return team;
 
@@ -85,15 +122,26 @@ namespace Fantasy
             InitializeComponent();
             ExcelParser ex = new ExcelParser();
             ex.InitializeList();
+            //Инициализация списка игроков
+            //using (FileStream fs = new FileStream("Stat", FileMode.Open))
+            //{
+            //    BinaryFormatter bf = new BinaryFormatter();
+            //    list = (List<Player>)bf.Deserialize(fs);
+            //}
             list = new List<Player>
             {
-                new Goalkeeper() { Surname = "g", Stat = new Statistics() { Goals = 1 } },
-                new Defender() { Surname = "d", Stat = new Statistics() { Assists = 2 } },
-                new MidFielder() { Surname = "m", Stat = new Statistics() { Goals = 3 } },
-                new Forward() { Surname = "f", Stat = new Statistics() { CleanSheet = 1 } }
+                new Goalkeeper() { Surname = "g", Stat = new Statistics() { Goals = 1, TeamOfWeek = 1 }, Price = 10.5 },
+                new Defender() { Surname = "d", Stat = new Statistics() { Assists = 2 }, Price = 6 },
+                new MidFielder() { Surname = "m", Stat = new Statistics() { Goals = 3 }, Price = 7 },
+                new Forward() { Surname = "f", Stat = new Statistics() { CleanSheet = 1, TeamOfWeek = 1 }, Price = 9 },
+                new Defender() { Surname = "s", Stat = new Statistics() { CleanSheet = 1 }, Price = 11 }
             };
         }
-
+        /// <summary>
+        /// Обработчик события смены схемы команды
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SchemeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem selectedItem = (sender as ComboBox).SelectedItem as ComboBoxItem;
@@ -142,37 +190,75 @@ namespace Fantasy
             }
             KeeperTextBox.Text = string.Empty;
             CapitainTextBox.Text = string.Empty;
+            Sub1.Text = string.Empty;
+            Sub2.Text = string.Empty;
+            Sub3.Text = string.Empty;
+            Sub4.Text = string.Empty;
         }
-
+        /// <summary>
+        /// Обрабротчик нажатия кнопки Submit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
             Flag();
-            if (!NotReady && CapExists)
+            if (!NotReady && CapExists && !NotPlayersExist)
             {
                 if (MessageBox.Show("Вы уверены?", "Внимание!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
-                    Team team = CreateTeam();
-                    string str = string.Empty;
-                    foreach (Player player in team.GetTeamArr())
+                    try
                     {
-                        str += player.ToString() + "\n";
+                        Team team = CreateTeam();
+                        string str = string.Empty;
+                        foreach (Player player in team.GetTeamArr())
+                        {
+                            str += player + "\n";
+                        }
+                        str += "Запасные: ";
+                        foreach (Player player in team.Substitutions)
+                        {
+                            str += player + ", ";
+                        }
+                        str = str.Remove(str.Length - 2);
+                        str += "\n";
+                        str += "Стоимость команды: " + team.Price + " млн.\n";
+                        str += "Общее количество очков: " + team.GetScore();
+                        MessageBox.Show(str);
                     }
-                    str += "Общее количество очков: " + team.GetScore();
-                    MessageBox.Show(str);
+                    catch
+                    {
+                        MessageBox.Show("Не все игроки на своих позициях!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
+            }
+            else if (NotPlayersExist)
+            {
+                MessageBox.Show("В команде есть несуществующие игроки!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                NotReady = false;
+                CapExists = false;
+                NotPlayersExist = false;
             }
             else if (!CapExists)
             {
                 MessageBox.Show("Команде нужен капитан, который проходит в состав!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 NotReady = false;
+                CapExists = false;
+                NotPlayersExist = false;
             }
             else if (NotReady)
             {
-                MessageBox.Show("Состав не собран!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Некорректный состав!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                 NotReady = false;
+                CapExists = false;
+                NotPlayersExist = false;
             }
         }
-
+        /// <summary>
+        /// Инициализация текстовых полей из текстового файла
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddFromFileButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openDialog = new OpenFileDialog()
@@ -184,26 +270,36 @@ namespace Fantasy
             {
                 return;
             }
-            string fileName = System.IO.Path.GetFullPath(openDialog.FileName); 
+            string fileName = System.IO.Path.GetFullPath(openDialog.FileName);
+            try
+            {
+                Team team = Team.CreateTeamFromFile(fileName, list);
 
-            Team team = Team.CreateTeamFromFile(fileName, list);
-
-            string scheme = "s" + team.Defense.Length + "_" + team.MidField.Length + "_" + team.Attack.Length;
-            SchemeComboBox.SelectedItem = SchemeComboBox.FindName(scheme) as ComboBoxItem;
-            KeeperTextBox.Text = team.Keeper.Surname;
-            for (int i = 0; i < team.Defense.Length; i++)
-            {
-                (DefensePanel.Children[i] as TextBox).Text = team.Defense[i].Surname;
+                string scheme = "s" + team.Defense.Length + "_" + team.MidField.Length + "_" + team.Attack.Length;
+                SchemeComboBox.SelectedItem = SchemeComboBox.FindName(scheme) as ComboBoxItem;
+                KeeperTextBox.Text = team.Keeper.Surname;
+                for (int i = 0; i < team.Defense.Length; i++)
+                {
+                    (DefensePanel.Children[i] as TextBox).Text = team.Defense[i].Surname;
+                }
+                for (int i = 0; i < team.MidField.Length; i++)
+                {
+                    (MidFieldPanel.Children[i] as TextBox).Text = team.MidField[i].Surname;
+                }
+                for (int i = 0; i < team.Attack.Length; i++)
+                {
+                    (AttackPanel.Children[i] as TextBox).Text = team.Attack[i].Surname;
+                }
+                CapitainTextBox.Text = team.Capitain.Surname;
+                for (int i = 1; i < team.Substitutions.Length + 1; i++)
+                {
+                    (SubPanel.Children[i] as TextBox).Text = team.Substitutions[i - 1].Surname;
+                }
             }
-            for (int i = 0; i < team.MidField.Length; i++)
+            catch
             {
-                (MidFieldPanel.Children[i] as TextBox).Text = team.MidField[i].Surname;
+                MessageBox.Show("Некорректный состав!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            for (int i = 0; i < team.Attack.Length; i++)
-            {
-                (AttackPanel.Children[i] as TextBox).Text = team.Attack[i].Surname;
-            }
-            CapitainTextBox.Text = team.Capitain.Surname;
         }
     }
 }
