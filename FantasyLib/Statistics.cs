@@ -18,5 +18,6 @@ namespace FantasyLib
         public int CleanSheet { get; set; }
         public int GoalsConc { get; set; }
         public int PenaltySave { get; set; }
+        public int TeamOfWeek { get; set; }
     }
 }

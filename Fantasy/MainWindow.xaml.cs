@@ -120,8 +120,6 @@ namespace Fantasy
         public MainWindow()
         {
             InitializeComponent();
-            ExcelParser ex = new ExcelParser();
-            ex.InitializeList();
             //Инициализация списка игроков
             //using (FileStream fs = new FileStream("Stat", FileMode.Open))
             //{

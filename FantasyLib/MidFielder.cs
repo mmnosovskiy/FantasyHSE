@@ -13,12 +13,12 @@ namespace FantasyLib
         {
             get
             {
-                return  3 * Stat.Assists - 2 * Stat.PenaltyMiss - Stat.YellowCard - 3 * Stat.RedCard - 2 * Stat.OwnGoal + Stat.CleanSheet + 5 * Stat.Goals;
+                return  3 * Stat.Assists - 2 * Stat.PenaltyMiss - Stat.YellowCard - 3 * Stat.RedCard - 2 * Stat.OwnGoal + Stat.CleanSheet + 5 * Stat.Goals + 3 * Stat.TeamOfWeek;
             }
         }
         public override string ToString()
         {
-            return string.Format("{0} - полузащитник - {1} очков", Surname, Score);
+            return string.Format("{0} - полузащитник - очки за тур: {1}", Surname, Score);
         }
     }
 }
