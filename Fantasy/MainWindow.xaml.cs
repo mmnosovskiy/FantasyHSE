@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FantasyLib;
 using Microsoft.Win32;
+using System.Threading;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -117,25 +118,31 @@ namespace Fantasy
             return team;
 
         }
+
+        public static List<Player> Init()
+        {
+            ExcelParser ex = new ExcelParser();
+            return ex.InitializeList();
+        }
+        public static async void Loading(ProgressBar pb, Button sub, Button subFromFile)
+        {
+            list = await InitAsync();
+            pb.Visibility = Visibility.Hidden;
+            pb.IsEnabled = false;
+            sub.IsEnabled = true;
+            subFromFile.IsEnabled = true;
+        }
+        public static Task<List<Player>> InitAsync()
+        {         
+            return Task.Run(() =>
+            {
+                ExcelParser ex = new ExcelParser();
+                return ex.InitializeList();
+            });
+        }
         public MainWindow()
         {
-            InitializeComponent();
-            ExcelParser ex = new ExcelParser();
-            list = ex.InitializeList();
-            //Инициализация списка игроков
-            //using (FileStream fs = new FileStream("Stat", FileMode.Open))
-            //{
-            //    BinaryFormatter bf = new BinaryFormatter();
-            //    list = (List<Player>)bf.Deserialize(fs);
-            //}
-            //list = new List<Player>
-            //{
-            //    new Goalkeeper() { Surname = "g", Stat = new Statistics() { Goals = 1, TeamOfWeek = 1 }, Price = 10.5 },
-            //    new Defender() { Surname = "d", Stat = new Statistics() { Assists = 2 }, Price = 6 },
-            //    new MidFielder() { Surname = "m", Stat = new Statistics() { Goals = 3 }, Price = 7 },
-            //    new Forward() { Surname = "f", Stat = new Statistics() { CleanSheet = 1, TeamOfWeek = 1 }, Price = 9 },
-            //    new Defender() { Surname = "s", Stat = new Statistics() { CleanSheet = 1 }, Price = 11 }
-            //};
+            InitializeComponent();    
         }
         /// <summary>
         /// Обработчик события смены схемы команды
@@ -213,7 +220,14 @@ namespace Fantasy
                         string str = string.Empty;
                         foreach (Player player in team.GetTeamArr())
                         {
-                            str += player + "\n";
+                            if (team.Capitain == player)
+                            {
+                                str += player + " - капитан\n";
+                            }
+                            else
+                            {
+                                str += player + "\n";
+                            }
                         }
                         str += "Запасные: ";
                         foreach (Player player in team.Substitutions)
@@ -224,7 +238,7 @@ namespace Fantasy
                         str += "\n";
                         str += "Стоимость команды: " + team.Price + " млн.\n";
                         str += "Общее количество очков: " + team.GetScore();
-                        MessageBox.Show(str);
+                        MessageBox.Show(str, "Результаты команды");
                     }
                     catch
                     {
@@ -301,6 +315,10 @@ namespace Fantasy
                 MessageBox.Show("Некорректный состав!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-        
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Loading(ProgBar, SubmitButton, AddFromFileButton);
+        }
     }
 }

@@ -81,7 +81,7 @@ namespace FantasyLib
             return res;
         }
         /// <summary>
-        /// Создает 
+        /// Создает объект команды из файла
         /// </summary>
         /// <param name="fileName"></param>
         /// <param name="list"></param>
@@ -91,7 +91,7 @@ namespace FantasyLib
             string temp;
             char[] separators = { ' ', ',', '.', ':' };
 
-            using (StreamReader sr = new StreamReader(new FileStream(fileName, FileMode.Open)))
+            using (StreamReader sr = new StreamReader(new FileStream(fileName, FileMode.Open), Encoding.Unicode))
             {
                 temp = sr.ReadLine();
                 string[] arr = temp.Split(separators, StringSplitOptions.RemoveEmptyEntries);
