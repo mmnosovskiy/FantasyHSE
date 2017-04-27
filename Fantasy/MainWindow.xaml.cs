@@ -301,5 +301,6 @@ namespace Fantasy
                 MessageBox.Show("Некорректный состав!", "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        
     }
 }
