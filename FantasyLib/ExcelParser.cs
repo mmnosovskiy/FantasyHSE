@@ -80,6 +80,7 @@ namespace FantasyLib
                 st.GoalsConc = GetIntCellValue(i + 1, 11);
                 st.CleanSheet = GetIntCellValue(i + 1, 12);
                 st.PenaltySave = GetIntCellValue(i + 1, 13);
+                st.TeamOfWeek = GetIntCellValue(i + 1, 14);
                 players[i - 1].Stat = st;
             }
 
