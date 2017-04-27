@@ -92,23 +92,9 @@ namespace FantasyLib
 
         private int GetIntCellValue(int i, int j)
         {
-            try
-            {
-                return Convert.ToInt32(WorkSheetExcel.Cells[i, j].Text.ToString());
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-        }
-
-        private void SerializePlayer(Player player)
-        {
-            BinaryFormatter bin_formatter = new BinaryFormatter();
-            using(FileStream fs = new FileStream("players.txt", FileMode.Create))
-            {
-                bin_formatter.Serialize(fs, player);
-            }
+            int res = 0;
+            int.TryParse(WorkSheetExcel.Cells[i, j].Text.ToString(), out res);
+            return res;
         }
     }
 }

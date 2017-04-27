@@ -63,6 +63,10 @@ namespace FantasyLib
                 {
                     price += fwd.Price;
                 }
+                foreach (Player player in Substitutions)
+                {
+                    price += player.Price;
+                }
                 return price;
             }
         }

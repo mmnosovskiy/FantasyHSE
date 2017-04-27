@@ -13,7 +13,7 @@ namespace FantasyLib
         {
             get
             {
-                return 3 * Stat.Assists - 2 * Stat.PenaltyMiss - Stat.YellowCard - 3 * Stat.RedCard - 2 * Stat.OwnGoal + 4 * Stat.Goals + 3 * Stat.TeamOfWeek;
+                return 3 * Stat.Assists - 2 * Stat.PenaltyMiss - Stat.YellowCard - 3 * Stat.RedCard - 2 * Stat.OwnGoal + 4 * Stat.Goals + Stat.TeamOfWeek;
             }
         }
         public override string ToString()
