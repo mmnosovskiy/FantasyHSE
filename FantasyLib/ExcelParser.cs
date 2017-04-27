@@ -93,7 +93,7 @@ namespace FantasyLib
         {
             try
             {
-                return Convert.ToInt32(WorkSheetExcel.Cells[i + 1, j].Text.ToString());
+                return Convert.ToInt32(WorkSheetExcel.Cells[i, j].Text.ToString());
             }
             catch (Exception)
             {

@@ -119,11 +119,11 @@ namespace Fantasy
 
         }
 
-        public static List<Player> Init()
-        {
-            ExcelParser ex = new ExcelParser();
-            return ex.InitializeList();
-        }
+        //public static List<Player> Init()
+        //{
+        //    ExcelParser ex = new ExcelParser();
+        //    return ex.InitializeList();
+        //}
         public static async void Loading(ProgressBar pb, Button sub, Button subFromFile)
         {
             list = await InitAsync();
@@ -222,7 +222,7 @@ namespace Fantasy
                         {
                             if (team.Capitain == player)
                             {
-                                str += player + " - капитан\n";
+                                str += player + " - капитан (x2)\n";
                             }
                             else
                             {
