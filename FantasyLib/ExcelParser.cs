@@ -22,6 +22,10 @@ namespace FantasyLib
         private Workbook WorkBookExcel;
         private Worksheet WorkSheetExcel;
         private Range RangeExcel;
+        /// <summary>
+        /// Возвращает список игроков, считанный из excel-файла
+        /// </summary>
+        /// <returns></returns>
         public List<Player> InitializeList()
         {
             var ExcelApp = new Application();
@@ -68,23 +72,34 @@ namespace FantasyLib
 
                 Statistics st = new Statistics();
                 string test = WorkSheetExcel.Cells[i + 1, 5].Text.ToString();
-                st.Goals = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 5].Text.ToString());
-                st.Assists = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 6].Text.ToString());
-                st.PenaltyMiss = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 7].Text.ToString());
-                st.YellowCard = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 8].Text.ToString());
-                st.RedCard = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 9].Text.ToString());
-                st.OwnGoal = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 10].Text.ToString());
-                st.GoalsConc = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 11].Text.ToString());
-                st.CleanSheet = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 12].Text.ToString());
-                st.PenaltySave = Convert.ToInt32(WorkSheetExcel.Cells[i + 1, 13].Text.ToString());
+                st.Goals = GetIntCellValue(i + 1, 5);
+                st.Assists = GetIntCellValue(i + 1, 5);
+                st.PenaltyMiss = GetIntCellValue(i + 1, 5);
+                st.YellowCard = GetIntCellValue(i + 1, 5);
+                st.RedCard = GetIntCellValue(i + 1, 5);
+                st.OwnGoal = GetIntCellValue(i + 1, 5);
+                st.GoalsConc = GetIntCellValue(i + 1, 5);
+                st.CleanSheet = GetIntCellValue(i + 1, 5);
+                st.PenaltySave = GetIntCellValue(i + 1, 5);
                 players[i - 1].Stat = st;
-                SerializePlayer(players[i - 1]);
             }
 
             WorkBookExcel.Close(false, Type.Missing, Type.Missing); //закрыть не сохраняя
             ExcelApp.Quit(); // вышел из Excel
             GC.Collect(); // убрал за собой
             return players;
+        }
+
+        private int GetIntCellValue(int i, int j)
+        {
+            try
+            {
+                return Convert.ToInt32(WorkSheetExcel.Cells[i + 1, j].Text.ToString());
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         private void SerializePlayer(Player player)
