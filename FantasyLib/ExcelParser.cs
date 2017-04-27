@@ -72,16 +72,15 @@ namespace FantasyLib
                 }
 
                 Statistics st = new Statistics();
-                string test = WorkSheetExcel.Cells[i + 1, 5].Text.ToString();
                 st.Goals = GetIntCellValue(i + 1, 5);
-                st.Assists = GetIntCellValue(i + 1, 5);
-                st.PenaltyMiss = GetIntCellValue(i + 1, 5);
-                st.YellowCard = GetIntCellValue(i + 1, 5);
-                st.RedCard = GetIntCellValue(i + 1, 5);
-                st.OwnGoal = GetIntCellValue(i + 1, 5);
-                st.GoalsConc = GetIntCellValue(i + 1, 5);
-                st.CleanSheet = GetIntCellValue(i + 1, 5);
-                st.PenaltySave = GetIntCellValue(i + 1, 5);
+                st.Assists = GetIntCellValue(i + 1, 6);
+                st.PenaltyMiss = GetIntCellValue(i + 1, 7);
+                st.YellowCard = GetIntCellValue(i + 1, 8);
+                st.RedCard = GetIntCellValue(i + 1, 9);
+                st.OwnGoal = GetIntCellValue(i + 1, 10);
+                st.GoalsConc = GetIntCellValue(i + 1, 11);
+                st.CleanSheet = GetIntCellValue(i + 1, 12);
+                st.PenaltySave = GetIntCellValue(i + 1, 13);
                 players[i - 1].Stat = st;
             }
 
