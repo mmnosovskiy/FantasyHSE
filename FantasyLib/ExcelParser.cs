@@ -24,7 +24,6 @@ namespace FantasyLib
         public List<Player> InitializeList()
         {
             var ExcelApp = new Application();
-            //FileStream fs = new FileStream(@"..\..\..\Resources\Fantasy.xlsx", FileMode.Open);
             string path = System.IO.Path.GetFullPath(@"..\..\..\Resources\Fantasy.xlsx");
             //Книга.
             WorkBookExcel = ExcelApp.Workbooks.Open(path); 
