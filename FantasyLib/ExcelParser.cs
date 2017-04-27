@@ -21,7 +21,7 @@ namespace FantasyLib
     { 
         private Workbook WorkBookExcel;
         private Worksheet WorkSheetExcel;
-        private Range RangeExcel;
+
         /// <summary>
         /// Возвращает список игроков, считанный из excel-файла
         /// </summary>
@@ -37,9 +37,8 @@ namespace FantasyLib
 
             var lastCell = WorkSheetExcel.Cells.SpecialCells(XlCellType.xlCellTypeLastCell);
             List<Player> players = new List<Player>();
-            string[,] list = new string[lastCell.Row, lastCell.Column];
 
-            for (int i = 1; i < lastCell.Column; i++)
+            for (int i = 1; i < lastCell.Row; i++)
             {
                 string surname = WorkSheetExcel.Cells[i + 1, 1].Text.ToString();
                 string club = WorkSheetExcel.Cells[i + 1, 3].Text.ToString();
