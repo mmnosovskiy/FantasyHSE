@@ -121,21 +121,21 @@ namespace Fantasy
         {
             InitializeComponent();
             ExcelParser ex = new ExcelParser();
-            ex.InitializeList();
+            list = ex.InitializeList();
             //Инициализация списка игроков
             //using (FileStream fs = new FileStream("Stat", FileMode.Open))
             //{
             //    BinaryFormatter bf = new BinaryFormatter();
             //    list = (List<Player>)bf.Deserialize(fs);
             //}
-            list = new List<Player>
-            {
-                new Goalkeeper() { Surname = "g", Stat = new Statistics() { Goals = 1, TeamOfWeek = 1 }, Price = 10.5 },
-                new Defender() { Surname = "d", Stat = new Statistics() { Assists = 2 }, Price = 6 },
-                new MidFielder() { Surname = "m", Stat = new Statistics() { Goals = 3 }, Price = 7 },
-                new Forward() { Surname = "f", Stat = new Statistics() { CleanSheet = 1, TeamOfWeek = 1 }, Price = 9 },
-                new Defender() { Surname = "s", Stat = new Statistics() { CleanSheet = 1 }, Price = 11 }
-            };
+            //list = new List<Player>
+            //{
+            //    new Goalkeeper() { Surname = "g", Stat = new Statistics() { Goals = 1, TeamOfWeek = 1 }, Price = 10.5 },
+            //    new Defender() { Surname = "d", Stat = new Statistics() { Assists = 2 }, Price = 6 },
+            //    new MidFielder() { Surname = "m", Stat = new Statistics() { Goals = 3 }, Price = 7 },
+            //    new Forward() { Surname = "f", Stat = new Statistics() { CleanSheet = 1, TeamOfWeek = 1 }, Price = 9 },
+            //    new Defender() { Surname = "s", Stat = new Statistics() { CleanSheet = 1 }, Price = 11 }
+            //};
         }
         /// <summary>
         /// Обработчик события смены схемы команды

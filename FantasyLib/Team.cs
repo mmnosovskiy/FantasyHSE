@@ -7,9 +7,9 @@ using System.IO;
 
 namespace FantasyLib
 {
+    [Serializable]
     public class Team
     {
-        [Serializable]
         public Goalkeeper Keeper { get; set; }
         public Defender[] Defense { get; set; }
         public MidFielder[] MidField { get; set; }

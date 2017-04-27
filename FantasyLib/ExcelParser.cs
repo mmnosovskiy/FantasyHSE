@@ -21,15 +21,14 @@ namespace FantasyLib
     { 
         private Workbook WorkBookExcel;
         private Worksheet WorkSheetExcel;
-        private Range RangeExcel;
         public List<Player> InitializeList()
         {
             var ExcelApp = new Application();
+            //FileStream fs = new FileStream(@"..\..\..\Resources\Fantasy.xlsx", FileMode.Open);
+            string path = System.IO.Path.GetFullPath(@"..\..\..\Resources\Fantasy.xlsx");
             //Книга.
-            WorkBookExcel = ExcelApp.Workbooks.Open(@"C:\Users\StasDon\Source\Repos\FantasyHSE\Fantasy\bin\Debug\Fantasy.xlsx");
+            WorkBookExcel = ExcelApp.Workbooks.Open(path); 
             //Таблица.
-            // WorkSheetExcel = ExcelApp.ActiveSheet as Microsoft.Office.Interop.Excel.Worksheet;
-            //    RangeExcel = null;
             WorkSheetExcel = (Worksheet)WorkBookExcel.Sheets[1];
 
             var lastCell = WorkSheetExcel.Cells.SpecialCells(XlCellType.xlCellTypeLastCell);
@@ -41,9 +40,11 @@ namespace FantasyLib
                 string surname = WorkSheetExcel.Cells[i + 1, 1].Text.ToString();
                 string club = WorkSheetExcel.Cells[i + 1, 3].Text.ToString();
                 double price = Convert.ToDouble(WorkSheetExcel.Cells[i + 1, 4].Text.ToString());
+
                 switch (WorkSheetExcel.Cells[i + 1, 2].Text.ToString())
                 {
-                    case "ВР": Goalkeeper gk = new Goalkeeper();
+                    case "ВР": 
+                        Goalkeeper gk = new Goalkeeper();
                         gk.Surname = surname;
                         gk.Price = price;
                         players.Add(gk);
