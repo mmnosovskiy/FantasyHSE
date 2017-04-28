@@ -59,8 +59,8 @@
                 </ComboBox>
             </StackPanel>
             <ProgressBar Name="ProgBar" Grid.Column="1" Width="100" Margin="5" Height="25" HorizontalAlignment="Right" IsIndeterminate="True"></ProgressBar>
-            <Button Name="SubmitButton" Grid.Column="2" IsEnabled="False" HorizontalAlignment="Right" Width="100" Height="50" Margin="5" Click="SubmitButton_Click">Submit</Button>
-            <Button Name="AddFromFileButton" Grid.Column="3" IsEnabled="False" Width="100" Height="50" Margin="5" Click="AddFromFileButton_Click">Add from file</Button>
+            <Button Name="SubmitButton" Grid.Column="2" IsEnabled="False" HorizontalAlignment="Right" Width="100" Height="50" Margin="5" Click="SubmitButton_Click">Рассчитать</Button>
+            <Button Name="AddFromFileButton" Grid.Column="3" IsEnabled="False" Width="100" Height="50" Margin="5" Click="AddFromFileButton_Click">Добавить...</Button>
         </Grid>
     </Grid>
 </Window>
