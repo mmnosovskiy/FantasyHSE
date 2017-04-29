@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fantasy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600" MinWidth="600" MinHeight="600" Icon="FantasyIcon.ico">
+        Title="MainWindow" Height="600" Width="600" MinWidth="600" MinHeight="600">
     <Grid>
         
         <Grid.RowDefinitions>
