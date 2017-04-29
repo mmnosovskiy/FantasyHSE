@@ -26,10 +26,10 @@ namespace FantasyLib
         /// Возвращает список игроков, считанный из excel-файла
         /// </summary>
         /// <returns></returns>
-        public List<Player> InitializeList()
+        public List<Player> InitializeList(string fileName)
         {
             var ExcelApp = new Application();
-            string path = System.IO.Path.GetFullPath(@"..\..\..\Resources\Fantasy.xlsx");
+            string path = fileName;
             //Книга.
             WorkBookExcel = ExcelApp.Workbooks.Open(path); 
             //Таблица.

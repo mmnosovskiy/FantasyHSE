@@ -16,7 +16,7 @@
         "Entry"
         {
         "MsmKey" = "8:_16C5A46C88EA17B7174EDB330C1C5C95"
-        "OwnerKey" = "8:_3816685555E14BD6A9F19691FB1A46B8"
+        "OwnerKey" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -27,20 +27,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3816685555E14BD6A9F19691FB1A46B8"
+        "MsmKey" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_61CE2B5E12FF4510A6ADE77F05BA8206"
-        "OwnerKey" = "8:_3816685555E14BD6A9F19691FB1A46B8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_BD2DC1A68BEB4F95A486742BB7512F13"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_6F23F6FFB267CCA71CE7BDD22EAF5599"
+        "OwnerKey" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -52,13 +46,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3816685555E14BD6A9F19691FB1A46B8"
+        "OwnerKey" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_61CE2B5E12FF4510A6ADE77F05BA8206"
+        "OwnerKey" = "8:_6F23F6FFB267CCA71CE7BDD22EAF5599"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -79,6 +73,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -95,6 +105,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -116,7 +142,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.6.1"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.5.2"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -175,14 +201,14 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_61CE2B5E12FF4510A6ADE77F05BA8206"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6F23F6FFB267CCA71CE7BDD22EAF5599"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:FantasyLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_61CE2B5E12FF4510A6ADE77F05BA8206"
+                    "_6F23F6FFB267CCA71CE7BDD22EAF5599"
                     {
                     "Name" = "8:FantasyLib.dll"
                     "Attributes" = "3:512"
@@ -204,26 +230,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD2DC1A68BEB4F95A486742BB7512F13"
-            {
-            "SourcePath" = "8:..\\..\\..\\..\\..\\Downloads\\Загрузки Yandex.Browser\\FantasyIcon.ico"
-            "TargetName" = "8:FantasyIcon.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_11DAE81719D2446D82A416AB8B626888"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -292,9 +298,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup_Fantasy"
+        "ProductName" = "8:HSE_Fantasy"
         "ProductCode" = "8:{B068DA19-DF5E-409F-B608-3B1A08372A6B}"
-        "PackageCode" = "8:{760BC177-F886-45A8-B724-E5734F0C0418}"
+        "PackageCode" = "8:{CEC10B68-ED0F-417D-9E3E-3461863BA450}"
         "UpgradeCode" = "8:{918D856C-CE7B-4FAB-B4DD-E369EB51CF68}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -305,7 +311,7 @@
         "Manufacturer" = "8:HSE Fantasy League"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup_Fantasy"
+        "Title" = "8:HSE_Fantasy"
         "Subject" = "8:"
         "ARPCONTACT" = "8:Mike Nosovskiy"
         "Keywords" = "8:"
@@ -414,32 +420,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_17774C0EE5324A6A974EF4DCB178C4A5"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_AD7DF01F31A44E1AA35BB89B197FC7EC"
             {
             "Name" = "8:Fantasy Calc"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
+            "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_3816685555E14BD6A9F19691FB1A46B8"
-            "Folder" = "8:_3D954B48F3AD44B3957917574BB4244A"
-            "WorkingFolder" = "8:_11DAE81719D2446D82A416AB8B626888"
-            "Icon" = "8:"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F16AA4F4709E4D9BBF83B0830D8AD28C"
-            {
-            "Name" = "8:Fantasy Calc"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_3816685555E14BD6A9F19691FB1A46B8"
+            "Target" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
             "Folder" = "8:_0D2D93E3D37B46B8A44065E20B5B944A"
             "WorkingFolder" = "8:_11DAE81719D2446D82A416AB8B626888"
-            "Icon" = "8:"
+            "Icon" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C89E0E45538C45F08AE240761332DA4B"
+            {
+            "Name" = "8:Fantasy Calc"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
+            "Folder" = "8:_3D954B48F3AD44B3957917574BB4244A"
+            "WorkingFolder" = "8:_11DAE81719D2446D82A416AB8B626888"
+            "Icon" = "8:_2DDB3404DBA14BD7B3F880AC37B29150"
             "Feature" = "8:"
             }
         }
@@ -841,9 +847,9 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3816685555E14BD6A9F19691FB1A46B8"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_2DDB3404DBA14BD7B3F880AC37B29150"
             {
-            "SourcePath" = "8:..\\Fantasy\\obj\\Debug\\Fantasy.exe"
+            "SourcePath" = "8:..\\Fantasy\\obj\\Release\\Fantasy.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_11DAE81719D2446D82A416AB8B626888"

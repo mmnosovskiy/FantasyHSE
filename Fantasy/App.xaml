@@ -4,6 +4,8 @@
              xmlns:local="clr-namespace:Fantasy"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+
+        <BitmapImage x:Key="FieldSource" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\А\Documents\visual studio 2017\Projects\Fantasy\Fantasy\Images\field.jpg"/>
+
     </Application.Resources>
 </Application>

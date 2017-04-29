@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Fantasy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600" MinWidth="600" MinHeight="600" Loaded="Window_Loaded">
+        Title="MainWindow" Height="600" Width="600" MinWidth="600" MinHeight="600" Icon="FantasyIcon.ico">
     <Grid>
         
         <Grid.RowDefinitions>
@@ -15,7 +15,16 @@
         </Grid.RowDefinitions>
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="Images\field.jpg"></ImageBrush>
+                <ImageBrush ImageSource="{DynamicResource FieldSource}">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform Angle="90" CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -45,10 +54,11 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal">
                 <Label Content="Схема: " FontSize="15" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"></Label>
-                <ComboBox Name="SchemeComboBox" SelectedIndex="2" Width="150" Height="50" Margin="5" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="SchemeComboBox_SelectionChanged">
+                <ComboBox Name="SchemeComboBox" SelectedIndex="2" Width="75" Height="50" Margin="5" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionChanged="SchemeComboBox_SelectionChanged">
                     <ComboBoxItem Name="s4_3_1">4-3-1</ComboBoxItem>
                     <ComboBoxItem Name="s4_2_2">4-2-2</ComboBoxItem>
                     <ComboBoxItem Name="s3_3_2">3-3-2</ComboBoxItem>
@@ -58,9 +68,10 @@
                     <ComboBoxItem Name="s2_4_2">2-4-2</ComboBoxItem>
                 </ComboBox>
             </StackPanel>
-            <ProgressBar Name="ProgBar" Grid.Column="1" Width="100" Margin="5" Height="25" HorizontalAlignment="Right" IsIndeterminate="True"></ProgressBar>
-            <Button Name="SubmitButton" Grid.Column="2" IsEnabled="False" HorizontalAlignment="Right" Width="100" Height="50" Margin="5" Click="SubmitButton_Click">Рассчитать</Button>
-            <Button Name="AddFromFileButton" Grid.Column="3" IsEnabled="False" Width="100" Height="50" Margin="5" Click="AddFromFileButton_Click">Добавить...</Button>
+            <ProgressBar Name="ProgBar" Grid.Column="1" Width="100" Margin="5" Height="25" HorizontalAlignment="Right" Visibility="Hidden" IsIndeterminate="True"></ProgressBar>
+            <Button Name="AddExcel" Grid.Column="2" Width="100" Height="50" Content="Таблица..." Click="AddExcel_Click" Margin="5"></Button>
+            <Button Name="SubmitButton" Grid.Column="3" IsEnabled="False" HorizontalAlignment="Right" Width="100" Height="50" Margin="5" Click="SubmitButton_Click">Рассчитать</Button>
+            <Button Name="AddFromFileButton" Grid.Column="4" IsEnabled="False" Width="100" Height="50" Margin="5" Click="AddFromFileButton_Click">Добавить...</Button>
         </Grid>
     </Grid>
 </Window>

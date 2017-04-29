@@ -42,6 +42,10 @@ namespace Fantasy
         /// </summary>
         static List<Player> list;
         /// <summary>
+        /// Путь к таблице
+        /// </summary>
+        static string fileName;
+        /// <summary>
         /// Метод для проверки условий перед рассчетом очков
         /// </summary>
         public void Flag()
@@ -126,6 +130,7 @@ namespace Fantasy
         //}
         public static async void Loading(ProgressBar pb, Button sub, Button subFromFile)
         {
+            pb.Visibility = Visibility.Visible;
             list = await InitAsync();
             pb.Visibility = Visibility.Hidden;
             pb.IsEnabled = false;
@@ -137,7 +142,7 @@ namespace Fantasy
             return Task.Run(() =>
             {
                 ExcelParser ex = new ExcelParser();
-                return ex.InitializeList();
+                return ex.InitializeList(fileName);
             });
         }
         public MainWindow()
@@ -316,9 +321,21 @@ namespace Fantasy
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void AddExcel_Click(object sender, RoutedEventArgs e)
         {
+            OpenFileDialog openDialog = new OpenFileDialog()
+            {
+                Filter = "Файл Excel|*.XLSX;*.XLS"
+            };
+            var result = openDialog.ShowDialog();
+            if (result == false)
+            {
+                return;
+            }
+            fileName = System.IO.Path.GetFullPath(openDialog.FileName);
             Loading(ProgBar, SubmitButton, AddFromFileButton);
         }
+
+        
     }
 }
